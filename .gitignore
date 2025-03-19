@@ -211,3 +211,5 @@ __pycache__/
 *.distcp
 *.metadata
 
+*.rank_0
+*.ckpt
