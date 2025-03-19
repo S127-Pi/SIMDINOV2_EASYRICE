@@ -207,3 +207,7 @@ __pycache__/
 
 # Ignore ZIP files
 *.zip
+
+*.distcp
+*.metadata
+
