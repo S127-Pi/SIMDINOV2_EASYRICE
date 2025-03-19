@@ -172,3 +172,38 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+node_modules/
+build/
+
+dist/
+*.egg-info/
+**/__pycache__/
+
+**/.ipynb_checkpoints
+**/.ipynb_checkpoints/**
+
+*.swp
+*.DS_Store
+
+.vscode/
+.history
+outputs
+
+debug
+
+# Ignore image files
+*.png
+*.jpeg
+*.jpg
+
+# Ignore model files
+*.pth
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore ZIP files
+*.zip
