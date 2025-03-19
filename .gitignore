@@ -213,3 +213,5 @@ __pycache__/
 
 *.rank_0
 *.ckpt
+
+*.npy
