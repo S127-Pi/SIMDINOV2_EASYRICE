@@ -1,5 +1,7 @@
 import torch
 import torch.nn as nn
+import logging
+logger = logging.getLogger("dinov2")
 
 # for 224
 def get_dino_finetuned_downloaded(model_path, modelname):
@@ -17,7 +19,6 @@ def get_dino_finetuned_downloaded(model_path, modelname):
             else:
                 new_key = key.replace("backbone.", "")
                 new_state_dict[new_key] = value
-        # change shape of pos_embed
         input_dims = {
             "dinov2_vits14": 384,
             "dinov2_vits14_reg": 384,
@@ -28,7 +29,9 @@ def get_dino_finetuned_downloaded(model_path, modelname):
             "dinov2_vitg14": 1536,
             "dinov2_vitg14_reg": 153
         }
+        # change shape of pos_embed
         pos_embed = nn.Parameter(torch.zeros(1, 257, input_dims[modelname]))
+        # pos_embed = nn.Parameter(torch.zeros(1, 197, input_dims[modelname])) # for patchsize: 16
         if model_path == "patch14/eval/training_99999/teacher_checkpoint.pth":
             pos_embed = nn.Parameter(torch.zeros(1, 197, input_dims[modelname]))
             model.pos_embed = pos_embed
@@ -37,6 +40,6 @@ def get_dino_finetuned_downloaded(model_path, modelname):
             
         # load state dict
         msg = model.load_state_dict(new_state_dict, strict=True)
-        print('Pretrained weights found at {} and loaded with msg: {}'.format(model_path, msg))
+        logger.info('Pretrained weights found at {} and loaded with msg: {}'.format(model_path, msg))
     model.to("cuda")
     return model

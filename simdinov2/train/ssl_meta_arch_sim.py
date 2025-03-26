@@ -57,8 +57,10 @@ def get_downloaded_dino_vit_interpolated(modelname="dinov2_vits14_reg"):
 
     model = torch.hub.load("facebookresearch/dinov2", modelname) 
     input_tensor = model.pos_embed
-    tensor_corr_shape = interpolate_pos_encoding(input_tensor, 16, 16) # patch size 16x16
-    pos_embed = nn.Parameter(torch.zeros(1, 257))
+    tensor_corr_shape = interpolate_pos_encoding(input_tensor, 16, 16) # patch size 14x14 ((225/14) x (225/14) + 1 (cls token))
+    # tensor_corr_shape = interpolate_pos_encoding(input_tensor, 14, 14) # patch size 16x16
+    pos_embed = nn.Parameter(torch.zeros(1, 257)) # (16 x 16) + 1
+    # pos_embed = nn.Parameter(torch.zeros(1, 197)) # (14 x 14) + 1
     pos_embed.data = tensor_corr_shape
     model.pos_embed = pos_embed
     return model

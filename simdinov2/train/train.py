@@ -66,7 +66,7 @@ For python-based LazyConfig, use "path.key=value".
     parser.add_argument(
         "--output-dir",
         "--output_dir",
-        default="IndiaPatch2",
+        default="IndiaPatchHovernetAndYolo2",
         type=str,
         help="Output directory to save logs and checkpoints",
     )
@@ -204,7 +204,8 @@ def do_train(cfg, model, resume=False):
     #     transform=data_transform,
     #     target_transform=lambda _: (),
     # )
-    dir = "images_india_cleaned_hovernet/" 
+    dir = "images_india_cleaned_hovernet_and_yolo/" 
+    logger.info(f"Training on dataset: {dir}")
     # dir = "training/"
     dataset = datasets.ImageFolder(dir, transform=data_transform, target_transform=lambda _: ())
     logger.info(f"Total dataset size: {len(dataset)}")
@@ -298,7 +299,7 @@ def do_train(cfg, model, resume=False):
 
     load_dotenv()
     wandb.login(key=os.getenv("WANDB_API_KEY"))
-    wandb.init(project="SIMDINOv2", name="India_train2(all hovernet, FIX load pretrained backbone, FIX data augmentation (color jittering), selective masking, maskratio (N.A),full grains global, local (top/bottom), pass selective global mask,VitB)")
+    wandb.init(project="SIMDINOv2", name="India_trainHoverNetAndYolo2(FIX load pretrained backbone, FIX data augmentation (color jittering), selective masking, maskratio (N.A),full grains global, local (top/bottom), pass selective global mask,VitB)")
     for data in metric_logger.log_every(
         data_loader,
         10,
