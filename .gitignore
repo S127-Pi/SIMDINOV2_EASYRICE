@@ -215,4 +215,9 @@ __pycache__/
 *.ckpt
 
 *.npy
+*.npz
+*.wandb
+*latest-run
+lightning_logs/
+*.conf
 *.csv
