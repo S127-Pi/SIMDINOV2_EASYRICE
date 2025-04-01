@@ -36,7 +36,7 @@ def get_args_parser(
         "--ngpus",
         "--gpus",
         "--gpus-per-node",
-        default=8,
+        default=2,
         type=int,
         help="Number of GPUs to request on each node",
     )
@@ -55,7 +55,7 @@ def get_args_parser(
     )
     parser.add_argument(
         "--partition",
-        default=slurm_partition,
+        default="gpu",
         type=str,
         help="Partition where to submit",
     )
@@ -104,7 +104,7 @@ def submit_jobs(task_class, args, name: str):
         kwargs["slurm_exclude"] = args.exclude
     executor_params = get_slurm_executor_parameters(
         nodes=args.nodes,
-        cpus_per_task=16,
+        cpus_per_task=32,
         num_gpus_per_node=args.ngpus,
         timeout_min=args.timeout,  # max is 60 * 72
         slurm_signal_delay_s=120,
