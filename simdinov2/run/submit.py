@@ -36,7 +36,7 @@ def get_args_parser(
         "--ngpus",
         "--gpus",
         "--gpus-per-node",
-        default=2,
+        default=3,
         type=int,
         help="Number of GPUs to request on each node",
     )
@@ -49,7 +49,7 @@ def get_args_parser(
     )
     parser.add_argument(
         "--timeout",
-        default=2800,
+        default=300,
         type=int,
         help="Duration of the job",
     )
@@ -104,7 +104,7 @@ def submit_jobs(task_class, args, name: str):
         kwargs["slurm_exclude"] = args.exclude
     executor_params = get_slurm_executor_parameters(
         nodes=args.nodes,
-        cpus_per_task=32,
+        cpus_per_task=args.cpus_per_task,
         num_gpus_per_node=args.ngpus,
         timeout_min=args.timeout,  # max is 60 * 72
         slurm_signal_delay_s=120,
@@ -113,8 +113,8 @@ def submit_jobs(task_class, args, name: str):
     )
     executor.update_parameters(name=name, **executor_params)
 
-    task = task_class(args)
-    job = executor.submit(task)
+    task = task_class(args) # Model with training arguments
+    job = executor.submit(task) # Submit the job to the executor
 
     logger.info(f"Submitted job_id: {job.job_id}")
     str_output_dir = os.path.abspath(args.output_dir).replace("%j", str(job.job_id))
