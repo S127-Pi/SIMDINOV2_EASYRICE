@@ -1,0 +1,42 @@
+{
+  "os":  "Linux-5.15.0-136-generic-x86_64-with-glibc2.31",
+  "python":  "CPython 3.11.11",
+  "startedAt":  "2025-04-03T03:30:38.411533Z",
+  "program":  "/media/new_volumn/SIMDINOV2_EASYRICE/04-3-2025-ClassificationIndianRiceHovernet3Class.ipynb",
+  "codePath":  "04-3-2025-ClassificationIndianRiceHovernet3Class.ipynb",
+  "git":  {
+    "remote":  "https://github.com/S127-Pi/SIMDINOV2_EASYRICE.git",
+    "commit":  "a977c2508761fad0499dddf8d59aa46c71cba970"
+  },
+  "email":  "sanchai.mol@easyrice.ai",
+  "root":  "/media/new_volumn/SIMDINOV2_EASYRICE",
+  "host":  "easyrice-TRX40-AORUS-PRO-WIFI",
+  "executable":  "/home/easyrice/anaconda3/envs/torch/bin/python",
+  "codePathLocal":  "04-3-2025-ClassificationIndianRiceHovernet3Class.ipynb",
+  "cpu_count":  32,
+  "cpu_count_logical":  64,
+  "gpu":  "NVIDIA GeForce RTX 4090",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "1709818175488",
+      "used":  "1427101270016"
+    }
+  },
+  "memory":  {
+    "total":  "134918946816"
+  },
+  "cpu":  {
+    "count":  32,
+    "countLogical":  64
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 4090",
+      "memoryTotal":  "25757220864",
+      "cudaCores":  16384,
+      "architecture":  "Ada"
+    }
+  ],
+  "cudaVersion":  "12.2"
+}
