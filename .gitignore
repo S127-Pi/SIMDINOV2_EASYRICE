@@ -223,3 +223,11 @@ lightning_logs/
 *.csv
 
 *.err
+*.outputs
+*.rank_1
+*.rank1
+*.rank2
+*.rank_2
+*.outputs
+*.pkl
+*.out
